@@ -1,3 +1,9 @@
 package com.example.recyapplication.data
 
-data class Albums(val id: Long, val title: String)
+import com.google.gson.annotations.SerializedName
+
+data class Albums(
+    @SerializedName("id")
+    val id: Long,
+    @SerializedName("title")
+    val title: String)
