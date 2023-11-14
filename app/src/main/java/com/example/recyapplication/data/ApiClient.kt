@@ -1,6 +1,8 @@
 package com.example.recyapplication.data
 
-interface ApiClient {
+import retrofit2.http.GET
 
-    fun getSongs(): List<Albums>
+interface ApiClient {
+    @GET("/photos")
+    suspend fun getSongs(): List<Albums>
 }

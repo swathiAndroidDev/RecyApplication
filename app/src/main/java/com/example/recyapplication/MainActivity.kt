@@ -9,9 +9,10 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.flow.collect
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var viewModel: AlbumsViewModel
@@ -25,12 +26,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-       setupRecyclerView()
+        setupRecyclerView()
 
         loading = findViewById(R.id.progress_bar)
         errorMsg = findViewById(R.id.error_msg)
 
-        viewModel = ViewModelProvider(this).get(AlbumsViewModel::class.java)
+        viewModel = ViewModelProvider(this)[AlbumsViewModel::class.java]
 
         viewModel.fetchAlbums()
         handleAlbumsResult()
@@ -65,7 +66,6 @@ class MainActivity : AppCompatActivity() {
                     }
 
                 }
-
             }
         }
     }
